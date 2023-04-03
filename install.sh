@@ -11,7 +11,7 @@ read -p ' Set VLAN ID: ' vlanid
 pveam update
 pveam download local alpine-3.17-default_20221129_amd64.tar.xz
 
-pct create $number local:vztmpl/alpine-3.17-default_20221129_amd64.tar.xz --ostype alpine --hostname $name --net0 name=eth0,ip=$ip,gw=$gw,bridge=$bridge,trunks=$vlanid[;$vlanid] --memory 512 --cores $cpu --storage $vol --unprivileged 1 --cmode shell --onboot 1
+pct create $number local:vztmpl/alpine-3.17-default_20221129_amd64.tar.xz --ostype alpine --hostname $name --net0 name=eth0,ip=$ip,gw=$gw,bridge=$bridge,tag=$vlanid --memory 512 --cores $cpu --storage $vol --unprivileged 1 --cmode shell --onboot 1
 pct start $number
 
 pct exec $number apk update
